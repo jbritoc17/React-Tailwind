@@ -1,20 +1,63 @@
 import React, { useEffect, useState } from "react";
 import { fetchProducts } from "../Api/fetchProducts";
+import categories from "../data/categories";
 
+import { Link } from "react-router-dom";
 const Home = () => {
-const [products, setProduct] = useState([]);
-
+  const [products, setProduct] = useState([]);
+  const [categoriesFromAPI, setCategoriesFromAPI] = useState([]);
   useEffect(() => {
     const getProduct = async () => {
       const date = await fetchProducts();
+      const data = await fetchProducts();
       console.log(date);
-      setProduct(date);
+      setProduct(date[0]);
+      setCategoriesFromAPI(data[1]);
     };
-    getProduct()
-  },[]);
+    getProduct();
+  }, []);
 
   return (
-    <div className="p-4">
+    <div className="">
+      <div className="mb-20 ">
+        {products.length ? (
+          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 max-w-7xl mx-auto gap-4 lg:grid-cols-4 mt-4 h-full object-contain ">
+            {categories.map((category, index) => (
+              <li key={index} className="flex justify-center items-center ">
+                <div className="hover:scale-105 duration-1000 group relative  overflow-hidden rounded-lg">
+                  <Link
+                    to={`/category/${category.name}`}
+                    className=" text-slate-500 hover:text-sky-500  "
+                  >
+                  <div className="group relative  overflow-hidden rounded-lg">
+
+                    <img
+                      className=" rounded-lg h-[350px] w-[350px] object-cover group-hover:opacity-40 duration-1000 "
+                      src={category.img}
+                      alt=""
+                      />
+                    <p className="absolute group-hover:bg-[#070707bd]  opacity-0 bottom-[140px] left-0 w-full text-center p-2 uppercase grop-hover:bg-opacity-70  transform transition  ease-in-out  group-hover:opacity-100  text-[#d83aff] text-2xl " >
+                      {category.name}
+                    </p>
+                      </div>
+                  </Link>
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div>
+            <div>
+              <ion-icon
+                class="text-9xl animate-spin  text-sky-500"
+                name="reload-outline"
+              ></ion-icon>
+            </div>
+
+            <p className="text-7xl">Loading</p>
+          </div>
+        )}
+      </div>
       {products ? (
         <ul className="grid sm:grid-cols-2 md:grid-cols-3 max-w-7xl mx-auto gap-4 lg:grid-cols-4 mt-4">
           {products.map((product) => (
@@ -31,14 +74,11 @@ const [products, setProduct] = useState([]);
                     </div>
                     <div class="p-5 space-y-3 flex-1">
                       <h3 class="text-sm font-semibold text-sky-500">
-                        {product.title}
+                        {product.category}
                       </h3>
                       <h2 class="text-xl font-semibold text-slate-800 leading-tight">
                         {product.category}
                       </h2>
-                      {/* <p class="text-slate-500 hidden md:block">
-                        {product.description}
-                      </p> */}
                     </div>
 
                     <div class="flex p-5 space-x-2">
@@ -63,7 +103,16 @@ const [products, setProduct] = useState([]);
           ))}
         </ul>
       ) : (
-        <p>Loading</p>
+        <div className="mt-72 border-spacing-8 border-l-yellow-700">
+          <div className="">
+            <ion-icon
+              class=" text-9xl animate-spin  text-sky-500"
+              name="reload-outline"
+            ></ion-icon>
+          </div>
+
+          <p className="text-7xl">Loading</p>
+        </div>
       )}
     </div>
   );
