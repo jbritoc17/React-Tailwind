@@ -21,22 +21,22 @@ const Home = () => {
     <div className="">
       <div className="mb-20 ">
         {products.length ? (
-          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 max-w-7xl mx-auto gap-4 lg:grid-cols-4 mt-4 h-full object-contain ">
+          <ul className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 max-w-7xl mx-auto gap-4 lg:grid-cols-4 mt-4 h-full object-contain ">
             {categories.map((category, index) => (
               <li key={index} className="flex justify-center items-center ">
                 <div className="hover:scale-105 duration-1000 group relative  overflow-hidden rounded-lg">
                   <Link
                     to={`/category/${category.name}`}
-                    className=" text-slate-500 hover:text-sky-500  "
+                    className="   "
                   >
-                  <div className="group relative  overflow-hidden rounded-lg">
+                  <div className="">
 
                     <img
-                      className=" rounded-lg h-[350px] w-[350px] object-cover group-hover:opacity-40 duration-1000 "
+                      className=" rounded-lg h-[350px] w-[350px] object-cover group-hover:opacity-40 duration-500  "
                       src={category.img}
                       alt=""
                       />
-                    <p className="absolute group-hover:bg-[#070707bd]  opacity-0 bottom-[140px] left-0 w-full text-center p-2 uppercase grop-hover:bg-opacity-70  transform transition  ease-in-out  group-hover:opacity-100  text-[#d83aff] text-2xl " >
+                    <p className="absolute group-hover:bg-[#070707bd]  opacity-0 bottom-[140px] left-0 w-full text-center p-2 uppercase grop-hover:bg-opacity-70  transform transition  ease-in-out  group-hover:opacity-100 duration-300  text-[#d83aff] text-xl " >
                       {category.name}
                     </p>
                       </div>

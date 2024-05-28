@@ -9,14 +9,14 @@ import {
 } from "react-router-dom";
 import Home from "../pages/Home";
 
-
-import Contact from "../pages/Contact";
 import MenuComponent from "../components/Menu";
 import SunComponent from "../components/Sun";
 import UserComponent from "../components/User";
 
 import Jewelery from "../pages/Jewelery";
 import Electronics from "../pages/Electronics";
+import ManClothes from "../pages/ManClothes";
+import WomenClothes from "../pages/WomenClothes";
 
 const Navbar = () => {
   return (
@@ -25,12 +25,12 @@ const Navbar = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/category" >
-              <Route path={":jewelery"} element={<Jewelery />} />
+            <Route path="/category">
+              <Route path={"jewelery"} element={<Jewelery />} />
               <Route path={"electronics"} element={<Electronics />} />
+              <Route path={"man_clothes"} element={<ManClothes />} />
+              <Route path={"women_clothes"} element={<WomenClothes />} />
             </Route>
-            
-            <Route path="/contact" element={<Contact />} />
           </Route>
         </Routes>
       </Router>
@@ -60,12 +60,30 @@ function Layout() {
               >
                 Electronics
               </Link>
-              <Link
-                className="text-slate-600 px-3 py-2 hover:text-sky-500 transition-colors"
-                to="/contact"
-              >
-                Clothes
-              </Link>
+               <div className="relative group inline-block text-left top-[9px]">
+                <Link
+                  className="group overflow-hidden rounded-lg text-slate-600 px-3 py-2 hover:text-sky-500 transition-colors"
+                  to="#"
+                >
+                  Clothes
+                </Link>
+                <div className="hidden group-hover:block absolute bg-white shadow-lg rounded-lg z-10 mt-2">
+                  <div className="py-2">
+                    <Link
+                      to="/category/man_clothes"
+                      className="block px-4 relative py-2 text-slate-600 hover:bg-slate-100 hover:text-sky-500 transition-colors"
+                    >
+                      Man
+                    </Link>
+                    <Link
+                      to="/category/women_clothes"
+                      className="block relative  px-4 py-2 text-slate-600 hover:bg-slate-100 hover:text-sky-500 transition-colors"
+                    >
+                      Women
+                    </Link>
+                    </div>
+                </div>
+              </div>
             </div>
             <div>
               <SunComponent />
