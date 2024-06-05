@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import Home from "../pages/Home";
 
-import MenuComponent from "../components/Menu";
+import Menu from "../components/Menu";
 import SunComponent from "../components/Sun";
 import UserComponent from "../components/User";
 
@@ -43,7 +43,9 @@ function Layout() {
       <nav>
         <header className="bg-white shadow px-6">
           <div className="flex h-16 items-center justify-between max-w-7xl mx-auto">
-            <MenuComponent />
+            <Menu/>
+
+          
             <div className="space-x-8 hidden md:flex">
               <Link className="px-3 py-2 text-sky-500" to="/">
                 Home
@@ -60,7 +62,7 @@ function Layout() {
               >
                 Electronics
               </Link>
-               <div className="relative group inline-block text-left top-[9px]">
+               <div className="relative group inline-block text-left top-[9px] ">
                 <Link
                   className="group overflow-hidden rounded-lg text-slate-600 px-3 py-2 hover:text-sky-500 transition-colors"
                   to="#"
